@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PunkAPI</string>
+    <string name="abv">%.1f%%</string>
+    <string name="food_pairing">Food Pairing:</string>
+    <string name="beer_tips">Beer Tips:</string>
+    <string name="contributed_by">Contributed by:</string>
+    <string name="bottle_image">Bottle image</string>
+    <string name="retry">retry</string>
+    <string name="beer_detail_title">%s (%.1f%%)</string>
+</resources>

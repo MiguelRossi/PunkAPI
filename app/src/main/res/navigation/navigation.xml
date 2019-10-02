@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@+id/catalog">
+
+    <fragment
+        android:id="@+id/catalog"
+        android:name="miguel.rossi.punkapi.catalog.CatalogFragment"
+        android:label="Catalog"
+        tool:layout="@layout/catalog_fragment">
+        <action
+            android:id="@+id/from_catalog_to_beerdetail"
+            app:destination="@+id/beerdetail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim">
+            <argument
+                android:name="beer"
+                app:argType="miguel.rossi.punkapi.domain.Beer" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/beerdetail"
+        android:name="miguel.rossi.punkapi.beerdetail.BeerDetailFragment"
+        android:label="Catalog"
+        tool:layout="@layout/beerdetail_fragment">
+        <argument
+            android:name="beer"
+            app:argType="miguel.rossi.punkapi.domain.Beer" />
+    </fragment>
+
+</navigation>
