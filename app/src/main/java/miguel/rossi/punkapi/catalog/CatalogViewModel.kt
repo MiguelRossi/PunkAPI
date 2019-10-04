@@ -1,7 +1,5 @@
 package miguel.rossi.punkapi.catalog
 
-import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope
@@ -25,9 +23,7 @@ class CatalogViewModel : ViewModel() {
 
     private var previousLastVisibleBeer = 0
 
-    @VisibleForTesting(otherwise = PRIVATE)
-    var catalogPage = FIRST_PAGE
-        private set
+    private var catalogPage = FIRST_PAGE
 
     val catalog: LiveData<BeerCatalog>
         get() = brewery.catalog
