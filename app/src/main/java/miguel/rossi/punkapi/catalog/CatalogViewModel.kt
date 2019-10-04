@@ -23,6 +23,8 @@ class CatalogViewModel : ViewModel() {
 
     private val brewery by lazy { Brewery() }
 
+    private var previousLastVisibleBeer = 0
+
     @VisibleForTesting(otherwise = PRIVATE)
     var catalogPage = FIRST_PAGE
         private set
@@ -73,8 +75,13 @@ class CatalogViewModel : ViewModel() {
 
     fun catalogScrolled(lastVisibleBeer: Int, beerInCatalog: Int) {
         if (_loading.value != true && brewery.lastPageReached.not()) {
-            if (lastVisibleBeer + CATALOG_VISIBLE_THRESHOLD >= beerInCatalog)
+            val scrollingDown = previousLastVisibleBeer < lastVisibleBeer
+            val nearTheBottom = lastVisibleBeer + CATALOG_VISIBLE_THRESHOLD >= beerInCatalog
+
+            if (scrollingDown && nearTheBottom) {
                 beerPlease(++catalogPage)
+                previousLastVisibleBeer = lastVisibleBeer
+            }
         }
     }
 
