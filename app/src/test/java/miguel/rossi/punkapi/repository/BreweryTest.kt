@@ -26,20 +26,21 @@ class BreweryTest {
     fun getHangover_whenNoInternet_andAnyError_thenEasyPeasyHangover() {
         val mockNetworkUtil = spy(NetworkUtil(mockConnectivityManager))
         doAnswer { false }.`when`(mockNetworkUtil).checkNetwork()
+        val brewery = spy(Brewery::class.java)
 
-        assertThat(getHangover(Exception(), mockNetworkUtil))
+        assertThat(brewery.getHangover(Exception(), mockNetworkUtil))
             .isEqualTo(Hangover(EASY_PEASY, "Oops! We couldn't find the internet..."))
 
         val serverError = HttpException(
             Response.error<Exception>(400, "".toResponseBody("".toMediaTypeOrNull()))
         )
-        assertThat(getHangover(serverError, mockNetworkUtil))
+        assertThat(brewery.getHangover(serverError, mockNetworkUtil))
             .isEqualTo(Hangover(EASY_PEASY, "Oops! We couldn't find the internet..."))
 
         val httpException = HttpException(
             Response.error<Exception>(500, "".toResponseBody("".toMediaTypeOrNull()))
         )
-        assertThat(getHangover(httpException, mockNetworkUtil))
+        assertThat(brewery.getHangover(httpException, mockNetworkUtil))
             .isEqualTo(Hangover(EASY_PEASY, "Oops! We couldn't find the internet..."))
     }
 
@@ -47,8 +48,9 @@ class BreweryTest {
     fun getHangover_whenNoHttpException_thenFallingApartHangover() {
         val mockNetworkUtil = spy(NetworkUtil(mockConnectivityManager))
         doAnswer { true }.`when`(mockNetworkUtil).checkNetwork()
+        val brewery = spy(Brewery::class.java)
 
-        assertThat(getHangover(Exception(), mockNetworkUtil))
+        assertThat(brewery.getHangover(Exception(), mockNetworkUtil))
             .isEqualTo(Hangover(BRAIN_SURGERY, "This brewery is falling apart..."))
     }
 
@@ -56,17 +58,18 @@ class BreweryTest {
     fun getHangover_whenServerError_thenApiClosed() {
         val mockNetworkUtil = spy(NetworkUtil(mockConnectivityManager))
         doAnswer { true }.`when`(mockNetworkUtil).checkNetwork()
+        val brewery = spy(Brewery::class.java)
 
         val firstServerError = HttpException(
             Response.error<Exception>(500, "".toResponseBody("".toMediaTypeOrNull()))
         )
-        assertThat(getHangover(firstServerError, mockNetworkUtil))
+        assertThat(brewery.getHangover(firstServerError, mockNetworkUtil))
             .isEqualTo(Hangover(BRAIN_SURGERY, "Punk API is closed, come back tomorrow"))
 
         val lastServerError = HttpException(
             Response.error<Exception>(599, "".toResponseBody("".toMediaTypeOrNull()))
         )
-        assertThat(getHangover(lastServerError, mockNetworkUtil))
+        assertThat(brewery.getHangover(lastServerError, mockNetworkUtil))
             .isEqualTo(Hangover(BRAIN_SURGERY, "Punk API is closed, come back tomorrow"))
     }
 
@@ -74,17 +77,18 @@ class BreweryTest {
     fun getHangover_whenClientError_thenTooDrunk() {
         val mockNetworkUtil = spy(NetworkUtil(mockConnectivityManager))
         doAnswer { true }.`when`(mockNetworkUtil).checkNetwork()
+        val brewery = spy(Brewery::class.java)
 
         val firstClientError = HttpException(
             Response.error<Exception>(400, "".toResponseBody("".toMediaTypeOrNull()))
         )
-        assertThat(getHangover(firstClientError, mockNetworkUtil))
+        assertThat(brewery.getHangover(firstClientError, mockNetworkUtil))
             .isEqualTo(Hangover(BRAIN_SURGERY, "You're too drunk, Punk API didn't get it"))
 
         val lastClientError = HttpException(
             Response.error<Exception>(499, "".toResponseBody("".toMediaTypeOrNull()))
         )
-        assertThat(getHangover(lastClientError, mockNetworkUtil))
+        assertThat(brewery.getHangover(lastClientError, mockNetworkUtil))
             .isEqualTo(Hangover(BRAIN_SURGERY, "You're too drunk, Punk API didn't get it"))
     }
 

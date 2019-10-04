@@ -21,9 +21,9 @@ private const val CATALOG_MIN_PAGE_SIZE = 25
 
 class Brewery {
 
-    private val apiService = getApiClient().create(PunkApiService::class.java)
+    private val apiService by lazy { getApiClient().create(PunkApiService::class.java) }
 
-    private val cellar = getCellar()
+    private val cellar by lazy { getCellar() }
 
     private val _catalog = MutableLiveData<BeerCatalog>()
     val catalog: LiveData<BeerCatalog>
