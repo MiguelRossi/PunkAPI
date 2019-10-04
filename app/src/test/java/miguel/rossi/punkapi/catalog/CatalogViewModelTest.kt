@@ -5,6 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import miguel.rossi.punkapi.domain.Beer
 import miguel.rossi.punkapi.repository.BeerCatalog
 import miguel.rossi.punkapi.utils.getBeerList
+import miguel.rossi.punkapi.utils.getBeerList_pageTwo
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyInt
@@ -54,17 +55,17 @@ class CatalogViewModelTest {
 
         assertThat(catalogViewModel.catalog.value).isNull()
 
-        val pageOne = getBeerList(0, 24)
+        val pageOne = getBeerList()
         catalogViewModel.fillCatalog(BeerCatalog(pageOne))
         assertThat(catalogViewModel.catalog.value).isEqualTo(BeerCatalog(pageOne))
 
-        val pageTwo = getBeerList(25, 49)
+        val pageTwo = getBeerList_pageTwo()
         catalogViewModel.fillCatalog(BeerCatalog(pageTwo))
         val newPages = mutableListOf<Beer>().apply {
             addAll(pageOne)
             addAll(pageTwo)
         }
-        assertThat(catalogViewModel.catalog.value!!.page.size).isEqualTo(50)
+        assertThat(catalogViewModel.catalog.value!!.page.size).isEqualTo(20)
         assertThat(catalogViewModel.catalog.value).isEqualTo(BeerCatalog(newPages))
     }
 
@@ -74,11 +75,12 @@ class CatalogViewModelTest {
 
         assertThat(catalogViewModel.canGetRequestBeers()).isTrue()
 
-        val pageOne = getBeerList(0, 23)
+        val pageOne = getBeerList()
         catalogViewModel.fillCatalog(BeerCatalog(pageOne))
         assertThat(catalogViewModel.catalog.value).isEqualTo(BeerCatalog(pageOne))
 
         assertThat(catalogViewModel.canGetRequestBeers()).isFalse()
     }
+
 
 }

@@ -1,26 +1,26 @@
 package miguel.rossi.punkapi.network
 
 import com.google.common.truth.Truth.assertThat
-import miguel.rossi.punkapi.utils.getBeer
-import miguel.rossi.punkapi.utils.getNetworkBeer
+import miguel.rossi.punkapi.utils.getBeerList
+import miguel.rossi.punkapi.utils.getEmptyBeerList
+import miguel.rossi.punkapi.utils.getEmptyNetworkBeerList
+import miguel.rossi.punkapi.utils.getNetworkBeerList
 import org.junit.Test
 
 class DataTransferBeerTest {
 
     @Test
     fun asDomainModel_whenAllNull_thenAllDefaultValues() {
-        val listOfNetworkBeer = listOf(getNetworkBeer(null))
+        val listOfNetworkBeer = getEmptyNetworkBeerList()
 
-        assertThat(listOfNetworkBeer.size).isEqualTo(1)
-        assertThat(listOfNetworkBeer.asDomainModel()).isEqualTo(listOf(getBeer(null)))
+        assertThat(listOfNetworkBeer.asDomainModel()).isEqualTo(getEmptyBeerList())
     }
 
     @Test
     fun asDomainModel_whenNoneNull_thenAllGivenValues() {
-        val listOfNetworkBeer = listOf(getNetworkBeer(10))
+        val listOfNetworkBeer = getNetworkBeerList()
 
-        assertThat(listOfNetworkBeer.size).isEqualTo(1)
-        assertThat(listOfNetworkBeer.asDomainModel()).isEqualTo(listOf(getBeer(10)))
+        assertThat(listOfNetworkBeer.asDomainModel()).isEqualTo(getBeerList())
     }
 
 }
