@@ -15,7 +15,7 @@ Description
 -----------
 
 Following [Google recommendations](https://developer.android.com/jetpack/docs/guide "Guide to app architecture") this branch implements the Repository Pattern with MVVM.<br />
-All the requests are done directly to the network and there is no database.<br />
+This branch uses Room as database.<br />
 All the threads are handled using coroutines.
 
 Libraries Used
@@ -26,6 +26,7 @@ From [Android Architecture Components](https://developer.android.com/topic/libra
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 - [Navigation](https://developer.android.com/guide/navigation/)
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+- [Room](https://developer.android.com/topic/libraries/architecture/room)
 
 From [Square](https://square.github.io/):
 - [OkHttp](https://square.github.io/okhttp/)
@@ -50,6 +51,7 @@ Current Branches
 ----------------
 
 - [coroutines_retrofit_moshi_glide_mvvm_repositoryPattern](https://github.com/MiguelRossi/PunkAPI/tree/coroutines_retrofit_moshi_glide_mvvm_repositoryPattern)
+- [coroutines_retrofit_moshi_glide_mvvm_repositoryPattern_room](https://github.com/MiguelRossi/PunkAPI/tree/coroutines_retrofit_moshi_glide_mvvm_repositoryPattern_room)
 
 Branches whishlist
 ------------------
@@ -60,9 +62,8 @@ Several branches with:
 - Creating modules
 - Find alternatives to the repository pattern (Mediator?)
 
-Two more branches adding:
-- Room
-- Koin
+One more branches adding:
+- Koin (with Room)
 
 A single branch with:
 - Volley instead of Retrofit
