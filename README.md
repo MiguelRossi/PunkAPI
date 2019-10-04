@@ -50,6 +50,7 @@ Current Branches
 ----------------
 
 - [coroutines_retrofit_moshi_glide_mvvm_repositoryPattern](https://github.com/MiguelRossi/PunkAPI/tree/coroutines_retrofit_moshi_glide_mvvm_repositoryPattern)
+- [coroutines_retrofit_moshi_glide_mvvm_repositoryPattern_room](https://github.com/MiguelRossi/PunkAPI/tree/coroutines_retrofit_moshi_glide_mvvm_repositoryPattern_room)
 
 Branches whishlist
 ------------------
