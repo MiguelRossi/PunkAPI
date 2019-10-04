@@ -77,3 +77,45 @@ fun getDatabaseFoodList() = listOf(
     DatabaseFood(0, "foodPairing_9", 9),
     DatabaseFood(1, "foodPairing_0", 9)
 )
+
+fun getCellarEntity_pageTwo(): CellarEntity {
+    val listDatabaseBeer = getDatabaseBeerList_pageTwo()
+    val listDatabaseFood = getDatabaseFoodList_pageTwo()
+    return CellarEntity(listDatabaseBeer, listDatabaseFood)
+}
+
+fun getDatabaseBeerList_pageTwo() = listOf(
+    DatabaseBeer(10, "10", "10", "10", "10", 10.0, "10", "10"),
+    DatabaseBeer(11, "11", "11", "11", "11", 11.0, "11", "11"),
+    DatabaseBeer(12, "12", "12", "12", "12", 12.0, "12", "12"),
+    DatabaseBeer(13, "13", "13", "13", "13", 13.0, "13", "13"),
+    DatabaseBeer(14, "14", "14", "14", "14", 14.0, "14", "14"),
+    DatabaseBeer(15, "15", "15", "15", "15", 15.0, "15", "15"),
+    DatabaseBeer(16, "16", "16", "16", "16", 16.0, "16", "16"),
+    DatabaseBeer(17, "17", "17", "17", "17", 17.0, "17", "17"),
+    DatabaseBeer(18, "18", "18", "18", "18", 18.0, "18", "18"),
+    DatabaseBeer(19, "19", "19", "19", "19", 19.0, "19", "19")
+)
+
+fun getDatabaseFoodList_pageTwo() = listOf(
+    DatabaseFood(0, "foodPairing_0", 10),
+    DatabaseFood(1, "foodPairing_1", 10),
+    DatabaseFood(0, "foodPairing_1", 11),
+    DatabaseFood(1, "foodPairing_2", 11),
+    DatabaseFood(0, "", 12),
+    DatabaseFood(1, "foodPairing_3", 12),
+    DatabaseFood(0, "foodPairing_3", 13),
+    DatabaseFood(1, "foodPairing_4", 13),
+    DatabaseFood(0, "foodPairing_4", 14),
+    DatabaseFood(1, "", 14),
+    DatabaseFood(0, "", 15),
+    DatabaseFood(1, "", 15),
+    DatabaseFood(0, "foodPairing_6", 16),
+    DatabaseFood(1, "foodPairing_7", 16),
+    DatabaseFood(0, "foodPairing_7", 17),
+    DatabaseFood(1, "foodPairing_8", 17),
+    DatabaseFood(0, "", 18),
+    DatabaseFood(1, "", 18),
+    DatabaseFood(0, "foodPairing_9", 19),
+    DatabaseFood(1, "foodPairing_0", 19)
+)

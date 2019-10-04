@@ -11,6 +11,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import miguel.rossi.punkapi.utils.getCellarEntity
+import miguel.rossi.punkapi.utils.getCellarEntity_pageTwo
 import miguel.rossi.punkapi.utils.getDatabaseBeerList
 import miguel.rossi.punkapi.utils.getDatabaseFoodList
 import org.junit.After
@@ -173,6 +174,53 @@ class CellarDaoTest {
         val newCellarEntity = cellarDao.getCellar()
         assertThat(newCellarEntity.databaseBeer).isEmpty()
         assertThat(newCellarEntity.databaseFood).isEmpty()
+
+        return@runBlocking
+    }
+
+    @Test
+    fun store_andGetCellar_whenTwoPages() = runBlocking {
+        createDb(true)
+
+        val cellarEntity = getCellarEntity()
+        cellarDao.storeCellar(cellarEntity)
+
+        val newCellarEntity = cellarDao.getCellar()
+        assertThat(newCellarEntity.databaseBeer).containsExactlyElementsIn(cellarEntity.databaseBeer)
+        assertThat(newCellarEntity.databaseFood).containsExactlyElementsIn(cellarEntity.databaseFood)
+
+        val secondCellarEntity = getCellarEntity_pageTwo()
+        cellarDao.storeCellar(secondCellarEntity)
+        val fullDatabaseBeer =
+            listOf(cellarEntity.databaseBeer, secondCellarEntity.databaseBeer).flatten()
+        val fullDatabaseFood =
+            listOf(cellarEntity.databaseFood, secondCellarEntity.databaseFood).flatten()
+        val fullCellarEntity = CellarEntity(fullDatabaseBeer, fullDatabaseFood)
+
+        val secondNewCellarEntity = cellarDao.getCellar()
+        assertThat(secondNewCellarEntity.databaseBeer).containsExactlyElementsIn(fullCellarEntity.databaseBeer)
+        assertThat(secondNewCellarEntity.databaseFood).containsExactlyElementsIn(fullCellarEntity.databaseFood)
+
+        return@runBlocking
+    }
+
+    @Test
+    fun store_andGetCellar_whenTwoPages_andRepeatedValues_thenContainsNoDuplicates() = runBlocking {
+        createDb(true)
+
+        val cellarEntity = getCellarEntity()
+        cellarDao.storeCellar(cellarEntity)
+
+        val newCellarEntity = cellarDao.getCellar()
+        assertThat(newCellarEntity.databaseBeer).containsExactlyElementsIn(cellarEntity.databaseBeer)
+        assertThat(newCellarEntity.databaseFood).containsExactlyElementsIn(cellarEntity.databaseFood)
+
+        val secondCellarEntity = getCellarEntity()
+        cellarDao.storeCellar(secondCellarEntity)
+
+        val secondNewCellarEntity = cellarDao.getCellar()
+        assertThat(secondNewCellarEntity.databaseBeer).containsExactlyElementsIn(cellarEntity.databaseBeer)
+        assertThat(secondNewCellarEntity.databaseFood).containsExactlyElementsIn(cellarEntity.databaseFood)
 
         return@runBlocking
     }
