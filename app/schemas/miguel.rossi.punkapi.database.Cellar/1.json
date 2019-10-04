@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f3ebcbac1aa37c63a3255d4fc498be01",
+    "identityHash": "f8f4479759d7ced929e66a74cae2a0f9",
     "entities": [
       {
         "tableName": "cellar_table_name",
@@ -96,7 +96,16 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_food_table_name_beerId",
+            "unique": false,
+            "columnNames": [
+              "beerId"
+            ],
+            "createSql": "CREATE  INDEX `index_food_table_name_beerId` ON `${TABLE_NAME}` (`beerId`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "cellar_table_name",
@@ -115,7 +124,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f3ebcbac1aa37c63a3255d4fc498be01')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f8f4479759d7ced929e66a74cae2a0f9')"
     ]
   }
 }

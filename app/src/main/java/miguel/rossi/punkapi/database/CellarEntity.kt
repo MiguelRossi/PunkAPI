@@ -33,7 +33,8 @@ data class DatabaseBeer(
         parentColumns = [FOOD_PARENT_COLUMN],
         childColumns = [FOOD_CHILD_COLUMN],
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    indices = [Index("beerId")]
 )
 data class DatabaseFood(
     val id: Int,
