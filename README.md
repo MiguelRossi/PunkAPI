@@ -16,7 +16,7 @@ Description
 
 Following [Google recommendations](https://developer.android.com/jetpack/docs/guide "Guide to app architecture") this branch implements the Repository Pattern with MVVM.<br />
 All the requests are done directly to the network and there is no database.<br />
-All the threads are handled using coroutines.
+Threads are managed using RxJava2, Volley as web client, JSON parsing using GSON and Picasso for handling images.
 
 Libraries Used
 --------------
@@ -27,13 +27,15 @@ From [Android Architecture Components](https://developer.android.com/topic/libra
 - [Navigation](https://developer.android.com/guide/navigation/)
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 
-From [Square](https://square.github.io/):
-- [OkHttp](https://square.github.io/okhttp/)
-- [Retrofit](https://square.github.io/retrofit/)
-- [Moshi](https://github.com/square/moshi)
+From Google:
+- [Volley](https://developer.android.com/training/volley)
+- [GSON](https://github.com/google/gson)
 
-Others:
-- [Glide](https://bumptech.github.io/glide/)
+From [Square](https://square.github.io/):
+- [Picasso](https://square.github.io/picasso/)
+
+From [ReactiveX](http://reactivex.io/):
+- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 
 And helping in the development:
 - [LeakCanary](https://square.github.io/leakcanary/)
@@ -51,6 +53,7 @@ Current Branches
 
 - [coroutines_retrofit_moshi_glide_mvvm_repositoryPattern](https://github.com/MiguelRossi/PunkAPI/tree/coroutines_retrofit_moshi_glide_mvvm_repositoryPattern)
 - [coroutines_retrofit_moshi_glide_mvvm_repositoryPattern_room](https://github.com/MiguelRossi/PunkAPI/tree/coroutines_retrofit_moshi_glide_mvvm_repositoryPattern_room)
+- [rxjava_volley_gson_picasso_mvvm_repositoryPattern](https://github.com/MiguelRossi/PunkAPI/tree/rxjava_volley_gson_picasso_mvvm_repositoryPattern)
 
 Branches whishlist
 ------------------
@@ -61,17 +64,10 @@ Several branches with:
 - Creating modules
 - Find alternatives to the repository pattern (Mediator?)
 
-Two more branches adding:
-- Room
+One more branches adding:
 - Koin
 
-A single branch with:
-- Volley instead of Retrofit
-- GSON instead of Moshi
-- RxJava instead of coroutines
-- Picasso instead of Glide
-
-From the previous one, another two adding:
+Another two adding:
 - Realm
 - Dagger2
 
